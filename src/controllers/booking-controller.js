@@ -22,6 +22,26 @@ async function createBooking(req,res){
     }
 
 }
+async function makePayment(req,res){
+    try {
+        const resposne = await BookingService.makePayment({
+            bookingId:req.body.bookingId,
+            userId:req.body.userId,
+            totalCost:req.body.totalCost
+        })
+        SuccessResponse.message ="Successfully booked the Booking";
+        SuccessResponse.data = resposne;
+        return res.
+                status(StatusCodes.CREATED).
+                json(SuccessResponse);
+        
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+
+}
 module.exports = {
-    createBooking
+    createBooking,
+    makePayment
 }
