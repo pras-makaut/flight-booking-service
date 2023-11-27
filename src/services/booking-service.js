@@ -97,7 +97,6 @@ async function cancelOldBookings(){
         const response = bookingRepositoy.cancelOldBookings(time);
         console.log(response);
         return response;
-        
     } catch (error) {
         
     }
